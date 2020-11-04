@@ -42,7 +42,7 @@ class PuntosProvider {
       listaLocalidades.sort( (String a, String b) => a.compareTo(b));
       return listaLocalidades;
     }
-    Future<List<String>> cargarModalidades() async{
+    Future<List<String>> cargarModalidades(String localidad) async{
     if (listaPuntos.length == 0) {
       await cargarPuntos();
     }

@@ -1,4 +1,6 @@
+
 import 'package:alojamientos/screens/list_modalidades_screen.dart';
+import 'package:alojamientos/screens/listaLocalidades_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: ListaModalidadesScreen(),//ListaPuntosScreen(),//MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: 'localidades',
+      routes: <String, WidgetBuilder>{
+        'localidades': (context) => ListaLocalidadesScreen(),
+        'modalidades': (context) => ListaModalidadesScreen(),
+      }, 
     );
   }
 }
