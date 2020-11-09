@@ -4,6 +4,7 @@ import '../models/puntoalojamientos_models.dart';
 import '../providers/puntos_provider.dart';
 
 class ListaPuntosScreen extends StatelessWidget {
+  Map<String, Object> args = new Map<String, Object>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class ListaPuntosScreen extends StatelessWidget {
 
   Widget _lista() {
     return FutureBuilder(
-      future: puntosProvider.cargarPuntos(),
+      future: puntosProvider.cargarPuntosFiltrados(args['localidad']),
       initialData: [],
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

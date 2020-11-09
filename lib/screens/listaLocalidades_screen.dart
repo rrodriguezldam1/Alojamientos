@@ -1,7 +1,11 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
+import 'package:alojamientos/screens/list_modalidades_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ListaModalidadesScreen extends StatelessWidget {
+class ListaLocalidadesScreen extends StatelessWidget {
+  Map<String, Object> args = new Map<String, Object>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +38,10 @@ class ListaModalidadesScreen extends StatelessWidget {
       final w = ListTile(
         title: Text(element),
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {},
+        onTap: () {
+          args['localidad'] = element;
+          Get.offAll(ListaModalidadesScreen(), arguments: args);
+        },
       );
       lst.add(w);
       lst.add(Divider());

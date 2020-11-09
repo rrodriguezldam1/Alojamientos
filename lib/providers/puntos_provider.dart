@@ -18,6 +18,8 @@ class PuntosProvider {
 
  List<String> listaModalidades = [];
 
+ List<PuntoAlojamiento> listaPuntosFiltrados = [];
+
  Future<List<PuntoAlojamiento>> cargarPuntos() async{
    final data = await rootBundle.loadString('assets/data/Opendata_Resultados_DD_es.json');
    final decodedData = json.decode(data);
@@ -54,6 +56,22 @@ class PuntosProvider {
       }
     });
     return listaModalidades;
+  }
+
+   Future<List<PuntoAlojamiento>> cargarPuntosFiltrados(
+      String localidad) async {
+    if (listaPuntos.length == 0) {
+      await cargarPuntos();
+    }
+    listaPuntosFiltrados = [];
+    listaPuntos.forEach((al) {
+      if ((al.localidad == localidad)) {
+        if (!listaPuntosFiltrados.contains(al.localidad)) {
+          listaPuntosFiltrados.add(al);
+        }
+      }
+    });
+    return listaPuntosFiltrados;
   }
 }
 
