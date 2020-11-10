@@ -1,7 +1,8 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
 import 'package:flutter/material.dart';
 
-class ListaModalidadesScreen extends StatelessWidget {
+class ListaLocalidadesScreen extends StatelessWidget {
+  Map<String,Object> args = new Map<String, Object>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,6 +10,7 @@ class ListaModalidadesScreen extends StatelessWidget {
         title: Text("Localidades"),
       ),
       body: _lista(),
+      
     );
   }
 
@@ -19,7 +21,7 @@ class ListaModalidadesScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return ListView(
-            children: _listaElementos(snapshot.data),
+            children: _listaElementos(context, snapshot.data),
           );
         } else {
           return Center(child: CircularProgressIndicator());
@@ -28,13 +30,16 @@ class ListaModalidadesScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _listaElementos(List<String> data) {
+  List<Widget> _listaElementos(BuildContext context, List<String> data) {
     final List<Widget> lst = [];
     data.forEach((element) {
       final w = ListTile(
         title: Text(element),
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {},
+        onTap: () {
+          args['localidad'] = element;
+          Navigator.pushNamed(context, 'modalidades', arguments: args);
+        },
       );
       lst.add(w);
       lst.add(Divider());
