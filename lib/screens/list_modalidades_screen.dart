@@ -1,22 +1,28 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
 import 'package:flutter/material.dart';
 
-class ListaLocalidadesScreen extends StatelessWidget {
+class ListaModalidadesScreen extends StatelessWidget {
   Map<String,Object> args = new Map<String, Object>();
+
   @override
   Widget build(BuildContext context) {
+    args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Localidades"),
+      appBar: AppBar(title: Text("Modalidades"),),
+      body: _lista(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+        Navigator.pop(context);
+        },
+        child: Icon(Icons.arrow_back),
       ),
-      body: _lista(),
-      
     );
   }
 
-  Widget _lista() {
+  Widget _lista(BuildContext context) {
     return FutureBuilder(
-      future: puntosProvider.cargarLocalidades(),
+      future: puntosProvider.cargarModalidades(args['localidad']),
       initialData: [],
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -26,7 +32,7 @@ class ListaLocalidadesScreen extends StatelessWidget {
         } else {
           return Center(child: CircularProgressIndicator());
         }
-      },
+      }
     );
   }
 
@@ -36,9 +42,9 @@ class ListaLocalidadesScreen extends StatelessWidget {
       final w = ListTile(
         title: Text(element),
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {
+         onTap: () {
           args['localidad'] = element;
-          Navigator.pushNamed(context, 'modalidades', arguments: args);
+          Navigator.pushNamed(context, '', arguments: args);
         },
       );
       lst.add(w);
