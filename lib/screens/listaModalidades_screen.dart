@@ -2,14 +2,17 @@ import 'package:alojamientos/providers/puntos_provider.dart';
 import 'package:alojamientos/screens/listaLocalidades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ListaModalidadesScreen extends StatelessWidget {
   Map<String, Object> args = new Map<String, Object>();
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
+    box.write('modalidad', null);
     //args = ModalRoute.of(context).settings.arguments;
-    args = Get.arguments;
+    args = Get.arguments ?? new Map<String, Object>();
     return Scaffold(
       appBar: AppBar(
         title: Text("Modalidades"),
@@ -27,7 +30,8 @@ class ListaModalidadesScreen extends StatelessWidget {
 
   Widget _lista(BuildContext context) {
     return FutureBuilder(
-        future: puntosProvider.cargarModalidades(args['localidad']),
+        future: puntosProvider.cargarModalidades(
+          box.read('localidad') ?? args['localidad']),
         initialData: [],
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
@@ -47,7 +51,8 @@ class ListaModalidadesScreen extends StatelessWidget {
         title: Text(element),
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          args['localidad'] = element;
+          box.write('modalidad', element);
+          args['modalidad'] = element;
           //Navigator.pushNamed(context, '', arguments: args);
           //Get.offAll(MapaScreen(), arguments: args);
         },
