@@ -1,8 +1,11 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'listaModalidades_screen.dart';
 
 class ListaLocalidadesScreen extends StatelessWidget {
-  Map<String,Object> args = new Map<String, Object>();
+  Map<String, Object> args = new Map<String, Object>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +13,6 @@ class ListaLocalidadesScreen extends StatelessWidget {
         title: Text("Localidades"),
       ),
       body: _lista(),
-      
     );
   }
 
@@ -38,7 +40,8 @@ class ListaLocalidadesScreen extends StatelessWidget {
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
           args['localidad'] = element;
-          Navigator.pushNamed(context, 'modalidades', arguments: args);
+          //Navigator.pushNamed(context, 'modalidades', arguments: args);
+          Get.offAll(ListaModalidadesScreen(), arguments: args);
         },
       );
       lst.add(w);
