@@ -1,4 +1,5 @@
 import 'package:alojamientos/models/puntoalojamientos_models.dart';
+import 'package:alojamientos/providers/data.dart';
 import 'package:alojamientos/screens/mapa_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/src/rendering/box.dart';
@@ -20,40 +21,43 @@ class SwiperWidget extends StatelessWidget {
   }
 
   Widget _swiper(context) {
-    final List<Widget> lst = [];
-    final c = GestureDetector(
-      onTap: () {
-        Navigator.push(context, 
-          MaterialPageRoute(builder: (context) => MapaScreen(puntoAlojamiento: null))
-        );
-      },
-    );
-
     final screenSize = MediaQuery.of(context).size;
     return Swiper(
       itemWidth: screenSize.width * 0.7,
       itemHeight: screenSize.height * 0.5,
       layout: SwiperLayout.STACK,
       itemBuilder: (BuildContext context, int index) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(20.0),
-
-          //         child: Image.network(
-          //   "http://via.placeholder.com/350x150",
-          //   fit: BoxFit.fill,
-          // ),
-          child: FadeInImage(
-            placeholder: AssetImage('assets/data/images/turismo.jpg'),
-            image: AssetImage('assets/data/images/alojamiento.jpg'
-                //_getImgUrl()
-                ),
-            fit: BoxFit.cover,
+        return GestureDetector(
+          onTap: () {
+            //print("url: ${lista[index].getWebUrl()}");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        MapaScreen(puntoAlojamiento: PuntoAlojamiento())));
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            // child: Image.network(
+            //   "http://via.placeholder.com/350x150",
+            //   fit: BoxFit.fill,
+            // ),
+            // child: Image(
+            //   image: AssetImage(images[index]),
+            //   fit: BoxFit.cover,
+            // ),
+             child: FadeInImage(
+               placeholder: AssetImage('assets/data/images/turismo.jpg'),
+               image: AssetImage('assets/data/images/alojamiento.jpg'),
+               fit: BoxFit.cover,
+             ),
+             
           ),
         );
       },
-      itemCount: 1,
-      pagination: new SwiperPagination(),
-      control: new SwiperControl(),
+      itemCount: 3,
+       pagination: new SwiperPagination(),
+      // control: new SwiperControl(),
     );
   }
 
