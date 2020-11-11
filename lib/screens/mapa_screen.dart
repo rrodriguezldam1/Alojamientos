@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:alojamientos/models/puntoalojamientos_models.dart';
+import 'package:alojamientos/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
@@ -42,6 +43,7 @@ class _MapaScreenState extends State<MapaScreen> {
           )
         ],
       ),
+      drawer: MenuWidget(),
       body: _crearFlutterMap(puntoAlojamiento),
       // floatingActionButton: FloatingActionButton(
       //     heroTag: "btn2",

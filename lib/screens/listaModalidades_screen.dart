@@ -1,5 +1,6 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
 import 'package:alojamientos/screens/listaLocalidades_screen.dart';
+import 'package:alojamientos/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -19,6 +20,7 @@ class ListaModalidadesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Modalidades"),
       ),
+      drawer: MenuWidget(),
       body: _lista(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

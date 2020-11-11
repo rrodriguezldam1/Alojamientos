@@ -1,5 +1,7 @@
 
 import 'package:alojamientos/models/puntoalojamientos_models.dart';
+import 'package:alojamientos/providers/puntos_provider.dart';
+import 'package:alojamientos/widgets/menu_widget.dart';
 import 'package:alojamientos/widgets/slider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ class SelectScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("Alojamiento"),
         ),
+        drawer: MenuWidget(),
         body: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +29,7 @@ class SelectScreen extends StatelessWidget {
 
   Widget _slider() {
     return FutureBuilder(
-      //future: PuntoAlojamiento.getImgPath(),
+      future: puntosProvider.getListaAlojamientos(),
       initialData: [],
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

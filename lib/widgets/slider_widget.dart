@@ -2,7 +2,7 @@ import 'package:alojamientos/models/puntoalojamientos_models.dart';
 import 'package:flutter/material.dart';
 
 class SliderWidget extends StatelessWidget {
-  final List<PuntoAlojamiento> lista;
+  final List<String> lista;
 
   SliderWidget({@required this.lista});
 
@@ -31,8 +31,8 @@ class SliderWidget extends StatelessWidget {
       final c = ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: FadeInImage(
-          placeholder: null,
-          image: AssetImage(a.getimgPath()),
+          placeholder: AssetImage('assets/data/images/turismo.jpg'),
+          image: AssetImage('assets/images/local/CasaRural.jpg'),
           fit: BoxFit.cover,
           height: 120.0,
         ),
