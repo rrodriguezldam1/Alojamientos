@@ -1,4 +1,5 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
+import 'package:alojamientos/screens/listaAlojamientos_screen.dart';
 import 'package:alojamientos/screens/listaLocalidades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class ListaModalidadesScreen extends StatelessWidget {
           box.write('modalidad', element);
           args['modalidad'] = element;
           //Navigator.pushNamed(context, '', arguments: args);
-          //Get.offAll(MapaScreen(), arguments: args);
+          Get.offAll(ListaAlojamientos(), arguments: args);
         },
       );
       lst.add(w);

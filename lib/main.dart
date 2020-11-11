@@ -30,14 +30,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Material App',
       home: //MapaScreen(puntoAlojamiento: PuntoAlojamiento(),) 
-      ListaAlojamientos(),
-      //  (alojamiento!=null)
-      //    ? MapaScreen(puntoAlojamiento: PuntoAlojamiento(),)
-      //      :(modalidad!=null)
-      //        ? ListaAlojamientos()
-      //            :(localidad!=null)
-      //              ? ListaModalidadesScreen()
-      //                : ListaLocalidadesScreen(),
+      //ListaAlojamientos(),
+        (alojamiento!=null)
+          ? MapaScreen(puntoAlojamiento: PuntoAlojamiento(),)
+            :(modalidad!=null)
+              ? ListaAlojamientos()
+                  :(localidad!=null)
+                    ? ListaModalidadesScreen()
+                      : ListaLocalidadesScreen(),
       //home: ListaLocalidadesScreen(),
       /*initialRoute: 'localidades',
       routes: <String, WidgetBuilder>{
