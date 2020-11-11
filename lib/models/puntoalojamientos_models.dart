@@ -3,12 +3,16 @@
 //     final welcome = welcomeFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:latlong/latlong.dart';
 
 PuntoAlojamiento welcomeFromJson(String str) => PuntoAlojamiento.fromJson(json.decode(str));
 
 String welcomeToJson(PuntoAlojamiento data) => json.encode(data.toJson());
 
 class PuntoAlojamiento {
+  getLatLon() {
+    return new LatLng(42.82569,-1.63246);
+}
     PuntoAlojamiento({
         this.codInscripcion,
         this.nombre,
