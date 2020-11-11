@@ -66,7 +66,7 @@ class PuntosProvider {
     listaPuntosFiltrados = [];
     listaPuntos.forEach((al) {
       if ((al.localidad == localidad)) {
-        if (!listaPuntosFiltrados.contains(al.localidad)) {
+        if (!listaPuntosFiltrados.contains(al.modalidad)) {
           listaPuntosFiltrados.add(al);
         }
       }
