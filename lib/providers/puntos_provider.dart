@@ -58,7 +58,7 @@ class PuntosProvider {
     return listaModalidades;
   }
 
-  
+
 }
 
 final puntosProvider = new PuntosProvider();
