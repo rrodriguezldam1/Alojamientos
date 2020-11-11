@@ -3,12 +3,22 @@
 //     final welcome = welcomeFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:latlong/latlong.dart';
 
 PuntoAlojamiento welcomeFromJson(String str) => PuntoAlojamiento.fromJson(json.decode(str));
 
 String welcomeToJson(PuntoAlojamiento data) => json.encode(data.toJson());
 
 class PuntoAlojamiento {
+  final _dir = 'assets/images/local/';
+
+  getLatLon() {
+    return new LatLng(42.82569,-1.63246);
+}
+
+  getimgPath() {
+    return _dir + 'CasaRural.jpg';
+}
     PuntoAlojamiento({
         this.codInscripcion,
         this.nombre,

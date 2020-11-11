@@ -8,26 +8,24 @@ import '../models/puntos_model.dart';
 
 class PuntosProvider {
 
- final listaTipos = [
-   'Cambiar Nombre',
- ];
+  final listaTipos = [
+    'Cambiar Nombre',
+  ];
 
- List<PuntoAlojamiento> listaPuntos = [];
+  List<PuntoAlojamiento> listaPuntos = [];
+  List<String> listaModalidades = [];
+  List<String> listaLocalidades = []; 
+  //List<String> listaAlojamientosFiltrados = []; 
 
- List<String> listaLocalidades = []; 
-
- List<String> listaModalidades = [];
-
- List<PuntoAlojamiento> listaPuntosFiltrados = [];
-
- Future<List<PuntoAlojamiento>> cargarPuntos() async{
-   final data = await rootBundle.loadString('assets/data/Opendata_Resultados_DD_es.json');
-   final decodedData = json.decode(data);
-   final openData = decodedData['OpenData'];
-   final openDataRow = openData['OpenDataRow'];
-   Puntos puntos = Puntos.fromJsonList(openDataRow);
-   listaPuntos = puntos.lista;
-   return listaPuntos;
+  Future<List<PuntoAlojamiento>> cargarPuntos() async {
+    final data = await rootBundle
+        .loadString('assets/data/Opendata_Resultados_DD_es.json');
+    final decodedData = json.decode(data);
+    final openData = decodedData['OpenData'];
+    final openDataRow = openData['OpenDataRow'];
+    Puntos puntos = Puntos.fromJsonList(openDataRow);
+    listaPuntos = puntos.lista;
+    return listaPuntos;
   }
 
   Future<List<String>> cargarLocalidades() async{
@@ -45,34 +43,22 @@ class PuntosProvider {
       return listaLocalidades;
     }
 
-  Future<List<String>> cargarModalidades() async{
+  Future<List<String>> cargarModalidades(String localidad) async{
     if (listaPuntos.length == 0) {
       await cargarPuntos();
     }
     listaModalidades = [];
     listaPuntos.forEach((moda) {
-      if (listaModalidades.indexOf(moda.modalidad) < 0) {
-        listaModalidades.add(moda.modalidad);
+      if (moda.localidad == localidad) {
+         if (!listaModalidades.contains(moda.modalidad)) {
+          listaModalidades.add(moda.modalidad);
+        }
       }
     });
     return listaModalidades;
   }
 
-   Future<List<PuntoAlojamiento>> cargarPuntosFiltrados(
-      String localidad) async {
-    if (listaPuntos.length == 0) {
-      await cargarPuntos();
-    }
-    listaPuntosFiltrados = [];
-    listaPuntos.forEach((al) {
-      if ((al.localidad == localidad)) {
-        if (!listaPuntosFiltrados.contains(al.modalidad)) {
-          listaPuntosFiltrados.add(al);
-        }
-      }
-    });
-    return listaPuntosFiltrados;
-  }
+  
 }
 
 final puntosProvider = new PuntosProvider();
