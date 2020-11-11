@@ -16,6 +16,7 @@ class PuntosProvider {
   List<PuntoAlojamiento> listaPuntos = [];
   List<String> listaModalidades = [];
   List<String> listaLocalidades = []; 
+  List<String> listaAlojamientos = [];
   //List<String> listaAlojamientosFiltrados = []; 
 
   Future<List<PuntoAlojamiento>> cargarPuntos() async {
@@ -59,6 +60,20 @@ class PuntosProvider {
     return listaModalidades;
   }
 
+Future<List<String>> getListaAlojamientos() async {
+    if (listaAlojamientos.length == 0) {
+      if (listaAlojamientos.length == 0) {
+        await cargarPuntos();
+      }
+      listaAlojamientos = [];
+      listaAlojamientos.forEach((p) {
+        if (p.isNotEmpty ) {
+          listaAlojamientos.add(p);
+        }
+      });
+    }
+    return listaAlojamientos;
+  }
 
 }
 
