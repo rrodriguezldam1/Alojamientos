@@ -1,4 +1,5 @@
 import 'package:alojamientos/providers/puntos_provider.dart';
+import 'package:alojamientos/screens/listaModalidades_screen.dart';
 import 'package:alojamientos/widgets/swiper_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,15 @@ class ListaAlojamientos extends StatelessWidget {
               // ),
             ],
           ),
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //Navigator.pop(context);
+          Get.offAll(ListaModalidadesScreen(), arguments: args);
+        },
+        child: Icon(Icons.arrow_back),
+      ),
+        );
   }
 
   Widget _swiper() {
