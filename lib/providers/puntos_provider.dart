@@ -8,13 +8,15 @@ import '../models/puntoalojamientos_models.dart';
 import '../models/puntos_model.dart';
 
 class PuntosProvider {
+
   final listaTipos = [
     'Cambiar Nombre',
   ];
 
   List<PuntoAlojamiento> listaPuntos = [];
-
+  List<String> listaModalidades = [];
   List<String> listaLocalidades = []; 
+  //List<String> listaAlojamientosFiltrados = []; 
 
   Future<List<PuntoAlojamiento>> cargarPuntos() async {
     final data = await rootBundle
@@ -41,8 +43,23 @@ class PuntosProvider {
       listaLocalidades.sort( (String a, String b) => a.compareTo(b));
       return listaLocalidades;
     }
-    
+
+  Future<List<String>> cargarModalidades(String localidad) async{
+    if (listaPuntos.length == 0) {
+      await cargarPuntos();
+    }
+    listaModalidades = [];
+    listaPuntos.forEach((moda) {
+      if (moda.localidad == localidad) {
+         if (!listaModalidades.contains(moda.modalidad)) {
+          listaModalidades.add(moda.modalidad);
+        }
+      }
+    });
+    return listaModalidades;
   }
 
+
+}
 
 final puntosProvider = new PuntosProvider();
